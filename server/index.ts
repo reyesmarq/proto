@@ -12,7 +12,10 @@ app.prepare()
     let server = express()
 
     server
+      // endpoints
       .use('/api/v1', routes)
+      // nextjs
       .get('*', (req, res) => handle(req, res))
+      // run the server
       .listen(port, () => console.log(`> Running at port ${port}`))
   })

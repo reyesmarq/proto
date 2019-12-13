@@ -1,8 +1,9 @@
 import express from 'express'
+import documentation from './documentation'
 
 let routes = express()
 
 routes
-  .use('/', (req, res) => { res.json({ msg: 'index routes' }) })
+  .use('/documentation', documentation)
 
 export default routes
