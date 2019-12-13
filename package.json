@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon -w ./server -e ts -x \"ts-node --project tsconfig.server.json ./server\"",
     "build": "next build && tsc && tsc --project tsconfig.server.json",
-    "start": "cross-env NODE_ENV=production node ./next/server"
+    "start": "cross-env NODE_ENV=production node ./next/server",
+    "documentation": "swagger-ui-watcher ./documentation.yaml",
+    "doc": "swagger-ui-watcher ./documentation.yaml --bundle=./bundle.yaml"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +28,7 @@
     "@types/yamljs": "^0.2.30",
     "cross-env": "^6.0.3",
     "nodemon": "^2.0.2",
+    "swagger-ui-watcher": "^2.1.6",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3"
   }
