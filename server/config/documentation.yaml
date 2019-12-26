@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+  version: '1.0.0'
+  title: '-'
+  description: '_'
+
+security: 
+  - bearerAuth: []
+
+tags: 
+  - name: Auth
+    description: auth
+    externalDocs:
+      description: find out more
+      url: 'http://google.com'
+  
+paths:
+  /auth/signup:
+    post:
+      tags:
+        - Auth
+      summary: Add a new company and super admin
+      requestBody:
+        $ref: '#/components/requestBodies/Signup'
+      responses:
+        201:
+          description: created
+
+
+components:
+  securitySchemes:
+    bearerAuth: #arbitriary name
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # optional, arbitrary value for documentation purposes
+
+  schemas:
+    Company:
+      type: object
+      properties:
+        companyId:
+          type: string
+          format: objectId
+        companyName:
+          type: string
+    
+    Employee:
+      type: object
+      properties:
+        employeeId:
+          type: string
+          format: objectId
+        firstName:
+          type: string
+          
+    Role:
+      type: object
+      properties:
+        roleId:
+          type: string
+          format: objectId
+        scopeType:
+          type: string
+          enum:
+            - Employee
+            - Department
+            - Organizational Unit
+          
+  requestBodies:
+    Signup:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - companyName
+              - firstName
+              - email
+              - password
+            properties:
+              companyName:
+                type: string
+                example: xia
+              docId:
+                type: string
+                example: 123456
+              firstName:
+                type: string
+                example: john
+              lastName:
+                type: string
+                example: wick
+              email:
+                type: string
+                example: jw@xia.com
+              password:
+                type: string
+                example: '******'
+                
+  responses:
+    ok:
+      description: Request successfully
+    created:
+      description: Resource Created
+    no_content:
+      description: Request was successfull but there is no content to return
+    redirect:
+      description: redirect
+    not_found:
+      description: The request was not found
+    
