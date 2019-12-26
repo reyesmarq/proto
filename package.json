@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -w ./server -e ts -x \"ts-node --project tsconfig.server.json ./server\"",
+    "dev": "cross-env NODE_ENV=development nodemon -w ./server -e ts -x \"ts-node --project tsconfig.server.json ./server\"",
     "build": "next build && tsc && tsc --project tsconfig.server.json",
     "start": "cross-env NODE_ENV=production node ./next/server",
     "documentation": "swagger-ui-watcher ./documentation.yaml",
@@ -31,6 +31,7 @@
     "swagger-ui-watcher": "^2.1.6",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3",
+    "variety-cli": "^0.5.0",
     "yamljs": "^0.3.0"
   }
 }

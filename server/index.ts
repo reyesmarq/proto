@@ -1,10 +1,11 @@
 import express from 'express'
 import next from 'next'
 import routes from './routes'
-import dotenv from 'dotenv'
-import path from 'path'
 
-dotenv.config({ path: `${__dirname}/config/.env` })
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config()
+}
+
 
 let port = process.env.PORT || 3000
 let dev = process.env.NODE_ENV !== 'production'
